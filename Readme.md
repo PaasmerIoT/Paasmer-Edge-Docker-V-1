@@ -85,7 +85,7 @@ The installation part is to be done in two parts, like
 
 ### Raspberry-Pi Installation
 
-* Download the run file from the [release](https://github.com/PaasmerIoT/Paasmer-Edge-Docker-V-1/releases).
+* Download the run file from the [here](https://github.com/PaasmerIoT/Paasmer-Edge-Docker-V-1/releases/download/1.0/paasmerOS).
 
 * Run the file using the command.
 ```
