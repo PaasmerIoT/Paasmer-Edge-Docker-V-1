@@ -27,9 +27,9 @@ In order to use the Zigbee the following is required.
 
 * Lastest version of Arduino IDE to installed on your computer. [Arduino software](https://www.arduino.cc/en/main/software)
 
-## Installation
+# Installation
 
-### ZigBee Configuration (Optional)
+## ZigBee Configuration (Optional)
 
 To establish, the ZigBee protocol the 2 ZigBee modules are to configured as a Coordinator and a Router. The ZigBee at the Raspberry-Pi side is to be configured as a Coordinator and the one at the Arduino side as a Router. Use XCTU software to Configure the ZigBee's as explained in the `ZigBEE_config.pdf` file.
 
@@ -39,7 +39,7 @@ The installation part is to be done in two parts, like
 
 * Raspberry-Pi
  
-### Arduino 
+## Arduino 
 
 * Open a new Sketch, Copy and Paste from the `ZigBee.ino` file in `<Arduino Sketch_DIR>/`.
 
@@ -48,30 +48,30 @@ The installation part is to be done in two parts, like
 * Also edit the `Config.h` in the Arduino Sketch similar to our `config.py` file in Single Board Computer. The code sample is as below,
 
 ```
-	String feedname[]={"feed4","feed6","feed7","feed5"};
+String feedname[]={"feed4","feed6","feed7","feed5"};
 
-	String feedtype[]={"sensor","actuator","sensor","sensor"};
+String feedtype[]={"sensor","actuator","sensor","sensor"};
 
-	String connectiontype[]= {"zigbee","zigbee","zigbee","zigbee"};
+String connectiontype[]= {"zigbee","zigbee","zigbee","zigbee"};
 
-	String sensortype[] = {"temperature","digital","Thermister","photoresistor"};
+String sensortype[] = {"temperature","digital","Thermister","photoresistor"};
 
-	int feedpin[][2]={{2},{4},{A0},{A1}};
+int feedpin[][2]={{2},{4},{A0},{A1}};
 
-	/*
-	 * it supports few sensor types.
-	 * they are "digital, analog, ultrasonic, Memsic2125, ADXL3xx, photoresistor, LM35, DHT11humadity, DHT11temperature, Thermister"
-	 */
+/*
+ * it supports few sensor types.
+ * they are "digital, analog, ultrasonic, Memsic2125, ADXL3xx, photoresistor, LM35, DHT11humadity, DHT11temperature, Thermister"
+ */
 
-	/* for DHT sensor
-	Please download the DHT library from teh below link.
+/* for DHT sensor
+Please download the DHT library from teh below link.
 
-	https://drive.google.com/file/d/0B1paTI5fzcHodno5azFOSVVDT0E/view?usp=sharing
+https://drive.google.com/file/d/0B1paTI5fzcHodno5azFOSVVDT0E/view?usp=sharing
 
-	Go to Sketch--> Include Library --> Add Zip File
+Go to Sketch--> Include Library --> Add Zip File
 
-	Close the Arduino IDE and open it again tan you will find the library included.
-	 */
+Close the Arduino IDE and open it again tan you will find the library included.
+ */
 ```
 * Save and Run the code in Arduino UNO.
 * Connect the ZigBee Router device to the Arduino UNO as give below
@@ -83,15 +83,23 @@ The installation part is to be done in two parts, like
 | TX        | RX   |
 | RX        | TX   |
 
-### Raspberry-Pi Installation
+## Raspberry-Pi Installation
 
-* Download the run file from the [here](https://github.com/PaasmerIoT/Paasmer-Edge-Docker-V-1/releases/download/1.0/paasmerOS.zip).
+### OS Image Downloading
+
+#### For Windows
+* Download the zip file [click here](https://s3-us-west-2.amazonaws.com/paasmer-docker/paasmerOS.zip) and extract it.
+
+#### For Linux
+* Download the run file.[click here](https://s3-us-west-2.amazonaws.com/paasmer-docker/paasmerOS) to download.
 
 * Run the file using the command.
 ```
 $ sh paasmerOS
 ```
 This will extract the customized Paasmer OS image to your home directory.
+
+### Docker Initialization
 
 * Flash the SD card with the ISO image.
 
@@ -103,7 +111,7 @@ This will extract the customized Paasmer OS image to your home directory.
 ```
 cd /home/pi/paasmer-docker
 ```
-* Edit the config.py file with feed details.
+* Edit the config.py file with feed details as root user.
 ```c
 feedname=["feed7","Feed2","Feed4"]  # Modify with the required feednames, do not provide space in the feedname.
 
@@ -132,21 +140,9 @@ ser = serial.Serial("/dev/ttyUSB0",9600) # Specify the port in which ZigBee is c
 ```
 $ sudo ./start.sh
 ```
-* This will ask for the UserName and DeviceName. The UserName is what you used in developer.paasmer.co for registration and give a unique DeviceName for your device and that must be alphanumeric without any spaces[a-z A-Z 0-9].
+* This will ask for the UserName and DeviceName. The UserName is what you used in developers.paasmer.co for registration and give a unique DeviceName for your device and that must be alphanumeric without any spaces[a-z A-Z 0-9].
 
-* Wohooo! Thats all. Your device should be connected to the Paasmer platform. 
-
-### Feed Modifications
-
-* The Docker is built such a way that the user can modify the Config file by modifying the feeds and feed details.
-
-* Once all the modifications are done, the user simply has to run the following command.
-
-```
-$ sudo ./update.sh
-```
-
-* This script will automatically update the config file during the Run time without disturbing the Docker. 
+* Wohooo! Thats all. Your device should be connected to the Paasmer platform.
 
 ## Support
 
@@ -155,5 +151,4 @@ The support forum is hosted on the GitHub, issues can be identified by users and
 ## Note
 
 * The Paasmer OS utilizes the features provided by raspbian OS and Docker engine.
-
 
